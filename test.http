@@ -1,0 +1,33 @@
+### GET request to example server
+GET http://localhost:8080/?guid=f7bfbdf4-20c5-4c79-ae7f-172a47d99e83
+
+### Get info 1
+
+POST http://localhost:8080/info
+Content-Type: application/json
+
+{
+  "access_token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDc1Njk2NTcsImlzcyI6ImY3YmZiZGY0LTIwYzUtNGM3OS1hZTdmLTE3MmE0N2Q5OWU4MyJ9.-PHj4f0dkpQWtPFj_o8flelXBGjadSG3fpXHONBzKffk13rwuRxgH6L4z6eThN617NmAEo37SMuZc1VHVpOTtw",
+  "refresh_token": "jwhV+17xiycQBLuG8wnshR7mwiiRG0N/YLjgsBC17bs="
+}
+
+###
+POST http://localhost:8080/refresh
+Content-Type: application/json
+
+{
+  "access_token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDc1NTc2NDEsImlzcyI6ImY3YmZiZGY0LTIwYzUtNGM3OS1hZTdmLTE3MmE0N2Q5OWU4MiJ9.Eneu5LABJUDLA4KLDb8ZemgdTB2HT5Yl6C74fpGInQ1tsomSnfb1w-Y62Dwo-i3TrGIPGxfpc3I3w3I_x9f31w",
+  "refresh_token": "PaxvoSmSpH8skY/mAeX39W4DAcmNnTexO2nkr/jJ8Jk="
+}
+
+###
+
+GET http://localhost:8080/logout
+Content-Type: application/json
+
+{
+  "access_token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDc1NTc3MjgsImlzcyI6ImY3YmZiZGY0LTIwYzUtNGM3OS1hZTdmLTE3MmE0N2Q5OWU4MiJ9.7DVchTQLrrDjUbRcUJ4QpY72dJBe0YxSvAuPpIMEejq6NPHgJ-qcOPgP_muvUyMoNe5ys6pLjqG2gfMv2c40wA",
+  "refresh_token": "dPBfwpNJPp8ERNFyelml8DA9Jl7UsUNYFQ1wog+dcg0="
+}
+
+###

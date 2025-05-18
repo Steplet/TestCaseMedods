@@ -1,0 +1,140 @@
+openapi: 3.0.4
+info:
+  title: TestCase
+  description: Тестовое задание
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /:
+    post:
+      summary: Авторизация через  GUID
+      parameters:
+        - name: guid
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+            example: f7bfbdf4-20c5-4c79-ae7f-172a47d99e83
+      responses:
+        '200':
+          description: Успешный вход
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: object
+                    example: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDc1NjE2NjYsImlzcyI6ImY3YmZiZGY0LTIwYzUtNGM3OS1hZTdmLTE3MmE0N2Q5OWU4MyJ9.n3gVs2kv6kY68dIIQceLdDaj7bs8cUoHTXshHZfawL9MGrCETHYaXat3VF1ooSA9dLvqMP1DhCM53txBvhPXbg
+                  refresh_token:
+                    type: object
+                    example: BqDoYzFvSvHQdgOx6pt1EfEolp+BKZ7IRmtJzhIFCy4=
+        '400':
+          description: Неверный парметр
+
+        '500':
+          description: Ошибка сервера
+  /info:
+    post:
+      summary: Получть GUID по токенам
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: object
+                  example: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDc1NjE2NjYsImlzcyI6ImY3YmZiZGY0LTIwYzUtNGM3OS1hZTdmLTE3MmE0N2Q5OWU4MyJ9.n3gVs2kv6kY68dIIQceLdDaj7bs8cUoHTXshHZfawL9MGrCETHYaXat3VF1ooSA9dLvqMP1DhCM53txBvhPXbg
+                refresh_token:
+                  type: object
+                  example: BqDoYzFvSvHQdgOx6pt1EfEolp+BKZ7IRmtJzhIFCy4=
+              required:
+                - access_token
+                - refresh_token
+      responses:
+        '200':
+          description: get guid
+          content:
+            plain/text:
+              schema:
+                type: string
+                format: uuid
+                example: f7bfbdf4-20c5-4c79-ae7f-172a47d99e83
+        '500':
+          description: server error
+        '400':
+          description: invalid tokens
+        '404':
+          description: no find valid refresh token in DB
+  /refresh:
+    post:
+      summary: обновить токены
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: object
+                  example: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDc1NjE2NjYsImlzcyI6ImY3YmZiZGY0LTIwYzUtNGM3OS1hZTdmLTE3MmE0N2Q5OWU4MyJ9.n3gVs2kv6kY68dIIQceLdDaj7bs8cUoHTXshHZfawL9MGrCETHYaXat3VF1ooSA9dLvqMP1DhCM53txBvhPXbg
+                refresh_token:
+                  type: object
+                  example: BqDoYzFvSvHQdgOx6pt1EfEolp+BKZ7IRmtJzhIFCy4=
+              required:
+                - access_token
+                - refresh_token
+      responses:
+        '200':
+          description: Успешный вход
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: object
+                    example: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDc1NjE2NjYsImlzcyI6ImY3YmZiZGY0LTIwYzUtNGM3OS1hZTdmLTE3MmE0N2Q5OWU4MyJ9.n3gVs2kv6kY68dIIQceLdDaj7bs8cUoHTXshHZfawL9MGrCETHYaXat3VF1ooSA9dLvqMP1DhCM53txBvhPXbg
+                  refresh_token:
+                    type: object
+                    example: BqDoYzFvSvHQdgOx6pt1EfEolp+BKZ7IRmtJzhIFCy4=
+        '500':
+          description: server error
+        '400':
+          description: invalid tokens
+        '404':
+          description: no find valid refresh token in DB
+  /logout:
+    post:
+      summary: Выйти
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                access_token:
+                  type: object
+                  example: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDc1NjE2NjYsImlzcyI6ImY3YmZiZGY0LTIwYzUtNGM3OS1hZTdmLTE3MmE0N2Q5OWU4MyJ9.n3gVs2kv6kY68dIIQceLdDaj7bs8cUoHTXshHZfawL9MGrCETHYaXat3VF1ooSA9dLvqMP1DhCM53txBvhPXbg
+                refresh_token:
+                  type: object
+                  example: BqDoYzFvSvHQdgOx6pt1EfEolp+BKZ7IRmtJzhIFCy4=
+              required:
+                - access_token
+                - refresh_token
+      responses:
+        '200':
+          description: Успешный вход
+          content:
+            plain/text:
+              schema:
+                type: string
+                example: Logout
+        '500':
+          description: server error
